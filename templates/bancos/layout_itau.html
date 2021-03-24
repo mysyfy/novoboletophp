@@ -1,5 +1,7 @@
 {% extends "layout_base.html" %}
+
 {% block head %}
+
 <style>
   .sequencia_numerica {
     font-size: 12px !important;
@@ -27,29 +29,12 @@
     font-weight: bold;
   }
 </style>
+
 {% endblock %}
 {% block instr %}
-<h2>Instru&ccedil;&otilde;es de impress&atilde;o</h2>
-<ol>
-  <li>
-    Imprima em impressora jato de tinta (ink jet) ou laser, em qualidade normal ou alta. N&atilde;o use modo econ&ocirc;mico.
-  </li>
-  <li>
-    Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) e margens m&iacute;nimas &agrave; esquerda e &agrave; direita do formul&aacute;rio.
-  </li>
-  <li>
-    Corte na linha indicada. N&atilde;o rasure, risque, fure ou dobre a regi&atilde;o onde se encontra o c&oacute;digo de barras
-  </li>
-  <li>
-    Caso tenha problemas ao imprimir, copie a seqüencia numérica abaixo e pague no caixa eletrônico ou no internet banking:
-  </li>
-</ol>
-<p class="sequencia_numerica">
-  Linha Digit&aacute;vel: {{ linha_digitavel }}<br/>
-  Valor: {{ valor_boleto }}
-</p>
 {% endblock %}
 {% block recibo_linha1 %}
+
 <table class="line" cellspacing="0" cellpadding="0">
   <tbody>
     <tr class="titulos">

@@ -5,6 +5,7 @@ use \NovoBoletoPHP\Base\Boleto as BoletoBase;
 use \NovoBoletoPHP\FormatterHelper;
 
 class Boleto extends BoletoBase {
+
     public function getTemplate()
     {
         return 'bancos/layout_itau.html';

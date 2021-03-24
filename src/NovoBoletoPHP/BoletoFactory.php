@@ -2,6 +2,9 @@
 namespace NovoBoletoPHP;
 
 use \NovoBoletoPHP\FormatterHelper;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
 
 class BoletoFactory {
     private $twig;
@@ -26,16 +29,16 @@ class BoletoFactory {
                      $config['cachePath'] :
                      $basePath . '/cache';
 
-        $loader = new \Twig_Loader_Filesystem($templatePath);
+        $loader     = new FilesystemLoader($templatePath);
 
-        $this->twig = new \Twig_Environment($loader, array(
+        $this->twig = new Environment($loader, array(
             'cache' => $cachePath,
         ));
 
         $this->layouts = array(
-            self::BANCO_DO_BRASIL => '\NovoBoletoPHP\BancoDoBrasil\Boleto',
-            self::SANTANDER => '\NovoBoletoPHP\Santander\Boleto',
-            self::ITAU => '\NovoBoletoPHP\Itau\Boleto'
+            self::BANCO_DO_BRASIL   => '\NovoBoletoPHP\BancoDoBrasil\Boleto',
+            self::SANTANDER         => '\NovoBoletoPHP\Santander\Boleto',
+            self::ITAU              => '\NovoBoletoPHP\Itau\Boleto'
         );
 
         $this->configure();
@@ -43,10 +46,11 @@ class BoletoFactory {
 
     public function configure()
     {
-        $this->twig->addFilter(new \Twig_SimpleFilter('imageUrl', array($this, 'makeImageUrl'), array(
+
+        $this->twig->addFilter(new TwigFilter('imageUrl', array($this, 'makeImageUrl'), array(
             'is_safe' => array('html')
         )));
-        $this->twig->addFilter(new \Twig_SimpleFilter('barcode', array($this, 'barcode'), array(
+        $this->twig->addFilter(new TwigFilter('barcode', array($this, 'barcode'), array(
             'is_safe' => array('html')
         )));
     }
